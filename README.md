@@ -20,16 +20,8 @@ Our AI-powered meal subscription service provides highly nutritious and calorie-
    ```bash
    git clone https://github.com/ai_meal.git
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd meal-subscription-service
-   ```
-3. Open `index.html` in a browser to explore the UI.
-4. (Optional) Set up a local server for better experience:
-   ```bash
-   python -m http.server
-   ```
-
+2. Open `frontend_v.html` in a browser to explore the UI.
+   
 ## Future Enhancements
 - Full AI integration for dynamic meal planning.
 - Mobile app development for better accessibility.
@@ -38,9 +30,6 @@ Our AI-powered meal subscription service provides highly nutritious and calorie-
 
 ## Contributing
 We welcome contributions! Please open an issue or submit a pull request with improvements or bug fixes.
-
-## License
-This project is licensed under the MIT License.
 
 ## Contact
 For any queries or support, please reach out to [ihlasnj8220@gmail.com].
