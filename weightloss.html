@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Loss Diet - Meal Subscription</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 114, 255, 0.3) 0%, rgba(0, 114, 255, 0) 70%);
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+            animation: pulse 6s infinite alternate;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .diet-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .diet-box {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .diet-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            color: #ff7e00;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        .meal-switch {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #ff7e00;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .meal-switch:hover {
+            background: #e66a00;
+        }
+    </style>
+    <script>
+        let vegMeals = [
+            ['Green Smoothie', 'Chia Pudding', 'Oats with Berries', 'Almond Butter on Whole Wheat', 'Detox Water', 'Steamed Broccoli', 'Carrot and Hummus', 'Vegetable Soup', 'Cucumber Salad', 'Herbal Tea'],
+            ['Grilled Tofu', 'Quinoa Salad', 'Lentil Soup', 'Boiled Chickpeas', 'Vegetable Stir-fry', 'Steamed Asparagus', 'Zucchini Noodles', 'Spinach Dal', 'Avocado Toast', 'Baked Sweet Potatoes'],
+            ['Mixed Nuts', 'Fruit Chaat', 'Greek Yogurt', 'Coconut Water', 'Chia Seed Smoothie', 'Baked Kale Chips', 'Roasted Pumpkin Seeds', 'Apple with Peanut Butter', 'Herbal Green Tea', 'Steamed Cabbage'],
+            ['Grilled Mushrooms', 'Spinach Soup', 'Whole Wheat Wrap', 'Brown Rice with Lentils', 'Steamed Veggies', 'Cucumber Raita', 'Roasted Carrots', 'Protein Smoothie', 'Tomato Soup', 'Walnuts']
+        ];
+
+        let nonVegMeals = [
+            ['Scrambled Egg Whites', 'Boiled Chicken Salad', 'Tuna Lettuce Wrap', 'Poached Eggs', 'Grilled Salmon', 'Detox Water', 'Omelet with Spinach', 'Protein Shake', 'Steamed Fish', 'Herbal Green Tea'],
+            ['Grilled Chicken Breast', 'Steamed Fish with Lemon', 'Turkey Salad', 'Shrimp Stir-fry', 'Boiled Egg Whites', 'Lemon Garlic Chicken', 'Salmon Salad', 'Roast Turkey', 'Mutton Soup', 'Baked Cod'],
+            ['Cottage Cheese with Flaxseeds', 'Egg Salad', 'Greek Yogurt with Berries', 'Peanut Butter Shake', 'Tuna Salad', 'Steamed Prawns', 'Roasted Chicken', 'Seafood Soup', 'Cucumber and Lemon Juice', 'Herbal Tea'],
+            ['Grilled Fish with Spinach', 'Chicken Soup', 'Egg White Omelet', 'Turkey Wrap', 'Cabbage Stir-fry', 'Salmon Soup', 'Lemon Herb Chicken', 'Boiled Eggs', 'Steamed Crab', 'Walnuts and Almonds']
+        ];
+
+        let mealTimes = ['Morning', 'Noon', 'Evening', 'Night'];
+        let index = 0;
+
+        function changeMeal(type) {
+            index = (index + 1) % 4;
+            document.getElementById(type + '-meal-title').innerText = type === 'veg' ? 'Vegetarian Diet - ' + mealTimes[index] : 'Non-Vegetarian Diet - ' + mealTimes[index];
+            document.getElementById(type + '-meal-list').innerHTML = (type === 'veg' ? vegMeals[index] : nonVegMeals[index]).map(item => `<li>✔ ${item}</li>`).join('');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Weight Loss Diet Recommendations</h1>
+        <p>Follow our carefully curated weight loss diet plans to achieve your fitness goals within a month.</p>
+        
+        <div class="diet-section">
+            <div class="diet-box">
+                <h2 id="veg-meal-title">Vegetarian Diet - Morning</h2>
+                <ul id="veg-meal-list">
+                    <li>✔ Green Smoothie</li>
+                    <li>✔ Chia Pudding</li>
+                    <li>✔ Oats with Berries</li>
+                    <li>✔ Almond Butter on Whole Wheat</li>
+                    <li>✔ Detox Water</li>
+                    <li>✔ Steamed Broccoli</li>
+                    <li>✔ Carrot and Hummus</li>
+                    <li>✔ Vegetable Soup</li>
+                    <li>✔ Cucumber Salad</li>
+                    <li>✔ Herbal Tea</li>
+                </ul>
+                <button class="meal-switch" onclick="changeMeal('veg')">Next Meal</button>
+            </div>
+            <div class="diet-box">
+                <h2 id="nonveg-meal-title">Non-Vegetarian Diet - Morning</h2>
+                <ul id="nonveg-meal-list">
+                    <li>✔ Scrambled Egg Whites</li>
+                    <li>✔ Boiled Chicken Salad</li>
+                    <li>✔ Tuna Lettuce Wrap</li>
+                    <li>✔ Poached Eggs</li>
+                    <li>✔ Grilled Salmon</li>
+                    <li>✔ Detox Water</li>
+                    <li>✔ Omelet with Spinach</li>
+                    <li>✔ Protein Shake</li>
+                    <li>✔ Steamed Fish</li>
+                    <li>✔ Herbal Green Tea</li>
+                </ul>
+                <button class="meal-switch" onclick="changeMeal('nonveg')">Next Meal</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

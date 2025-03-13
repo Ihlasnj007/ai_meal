@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Gain Diet - Meal Subscription</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 114, 255, 0.3) 0%, rgba(0, 114, 255, 0) 70%);
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+            animation: pulse 6s infinite alternate;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .diet-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .diet-box {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .diet-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        .meal-switch {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #28a745;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .meal-switch:hover {
+            background: #218838;
+        }
+    </style>
+    <script>
+        let vegMeals = [
+            ['Banana Smoothie', 'Oats with Peanut Butter', 'Avocado Toast', 'Whole Milk', 'Almond Butter Sandwich', 'Cheese Omelet', 'Granola with Yogurt', 'Mixed Nuts', 'Sweet Potato Mash', 'Herbal Tea'],
+            ['Quinoa with Beans', 'Paneer Curry', 'Lentil Soup', 'Whole Wheat Pasta', 'Steamed Rice with Vegetables', 'Baked Potatoes', 'Spinach Dal', 'Tofu Stir-fry', 'Mango Shake', 'Protein Smoothie'],
+            ['Cheese & Crackers', 'Nutty Trail Mix', 'Full-fat Yogurt', 'Fruit Salad with Honey', 'Milkshake', 'Chia Seed Pudding', 'Almonds & Walnuts', 'Peanut Butter Toast', 'Roasted Chickpeas', 'Cashew Shake'],
+            ['Grilled Paneer', 'Spinach Soup', 'Whole Wheat Wrap', 'Brown Rice with Ghee', 'Baked Veggies with Cheese', 'Cottage Cheese Salad', 'Stuffed Paratha', 'Fruit Smoothie', 'Tomato Soup', 'Walnuts']
+        ];
+
+        let nonVegMeals = [
+            ['Scrambled Eggs with Cheese', 'Chicken Breast with Rice', 'Tuna Salad', 'Boiled Eggs', 'Salmon with Avocado', 'Grilled Chicken', 'Turkey Sandwich', 'Omelet with Cheese', 'Protein Shake', 'Whole Milk'],
+            ['Grilled Chicken Breast', 'Beef Stew', 'Mutton Curry', 'Roast Turkey', 'Salmon with Quinoa', 'Shrimp Stir-fry', 'Egg Curry', 'Prawns with Rice', 'Chicken Soup', 'Baked Fish'],
+            ['Greek Yogurt with Nuts', 'Egg Salad', 'Peanut Butter Smoothie', 'Milk with Almonds', 'Chicken Wrap', 'Beef Burger', 'Roasted Chicken', 'Tuna Pasta', 'Cottage Cheese Omelet', 'Walnuts'],
+            ['Grilled Fish with Butter', 'Chicken Soup', 'Egg Omelet with Cheese', 'Turkey Wrap', 'Cottage Cheese with Honey', 'Mutton Soup', 'Lamb Chops', 'Steamed Crab', 'Seafood Stew', 'Almond Shake']
+        ];
+
+        let mealTimes = ['Morning', 'Noon', 'Evening', 'Night'];
+        let index = 0;
+
+        function changeMeal(type) {
+            index = (index + 1) % 4;
+            document.getElementById(type + '-meal-title').innerText = type === 'veg' ? 'Vegetarian Diet - ' + mealTimes[index] : 'Non-Vegetarian Diet - ' + mealTimes[index];
+            document.getElementById(type + '-meal-list').innerHTML = (type === 'veg' ? vegMeals[index] : nonVegMeals[index]).map(item => `<li>✔ ${item}</li>`).join('');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Weight Gain Diet Recommendations</h1>
+        <p>Follow our specialized weight gain diet plans to achieve a healthy increase in body weight.</p>
+        
+        <div class="diet-section">
+            <div class="diet-box">
+                <h2 id="veg-meal-title">Vegetarian Diet - Morning</h2>
+                <ul id="veg-meal-list">
+                    <li>✔ Banana Smoothie</li>
+                    <li>✔ Oats with Peanut Butter</li>
+                    <li>✔ Avocado Toast</li>
+                    <li>✔ Whole Milk</li>
+                    <li>✔ Almond Butter Sandwich</li>
+                    <li>✔ Cheese Omelet</li>
+                    <li>✔ Granola with Yogurt</li>
+                    <li>✔ Mixed Nuts</li>
+                    <li>✔ Sweet Potato Mash</li>
+                    <li>✔ Herbal Tea</li>
+                </ul>
+                <button class="meal-switch" onclick="changeMeal('veg')">Next Meal</button>
+            </div>
+            <div class="diet-box">
+                <h2 id="nonveg-meal-title">Non-Vegetarian Diet - Morning</h2>
+                <ul id="nonveg-meal-list">
+                    <li>✔ Scrambled Eggs with Cheese</li>
+                    <li>✔ Chicken Breast with Rice</li>
+                    <li>✔ Tuna Salad</li>
+                    <li>✔ Boiled Eggs</li>
+                    <li>✔ Salmon with Avocado</li>
+                    <li>✔ Grilled Chicken</li>
+                    <li>✔ Turkey Sandwich</li>
+                    <li>✔ Omelet with Cheese</li>
+                    <li>✔ Protein Shake</li>
+                    <li>✔ Whole Milk</li>
+                </ul>
+                <button class="meal-switch" onclick="changeMeal('nonveg')">Next Meal</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

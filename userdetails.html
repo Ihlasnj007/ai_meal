@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Nutrition Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43);
+            padding: 2rem;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 114, 255, 0.2);
+            width: 100%;
+            max-width: 560px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: cardEntrance 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+            border-radius: 2px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: formEntrance 0.6s forwards;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a4a4a;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        input:focus, select:focus {
+            border-color: #0072ff;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #0072ff, #005ecb);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 114, 255, 0.6);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes formEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glowing Effects */
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            z-index: -1;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 114, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 114, 255, 0.4);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            input, select {
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+        .form-group:nth-child(8) { animation-delay: 0.8s; }
+        .form-group:nth-child(9) { animation-delay: 0.9s; }
+        .form-group:nth-child(10) { animation-delay: 1.0s; }
+        .form-group:nth-child(11) { animation-delay: 1.1s; }
+        .form-group:nth-child(12) { animation-delay: 1.2s; }
+        .form-group:nth-child(13) { animation-delay: 1.3s; }
+        .form-group:nth-child(14) { animation-delay: 1.4s; }
+        .form-group:nth-child(15) { animation-delay: 1.5s; }
+        .form-group:nth-child(16) { animation-delay: 1.6s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>AI-Powered Nutrition Planner</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="height">Height (cm)</label>
+                <input type="number" id="height" name="height" required>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" required>
+            </div>
+
+            <div class="form-group">
+                <label for="activity">Activity Level</label>
+                <select id="activity" name="activity" required>
+                    <option value="">Select</option>
+                    <option value="sedentary">Sedentary</option>
+                    <option value="lightly_active">Lightly Active</option>
+                    <option value="moderately_active">Moderately Active</option>
+                    <option value="very_active">Very Active</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="allergies">Allergies</label>
+                <input type="text" id="allergies" name="allergies" placeholder="Comma separated list">
+            </div>
+
+            <div class="form-group">
+                <label for="diet">Dietary Preference</label>
+                <select id="diet" name="diet">
+                    <option value="">Select</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="none">No Preference</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="conditions">Medical Conditions</label>
+                <input type="text" id="conditions" name="conditions" placeholder="Comma separated list">
+            </div>
+
+            <div class="form-group">
+                <label for="calorieIntake">Calorie Preference</label>
+                <input type="text" id="calorieIntake" name="calorieIntake" placeholder="Daily calories">
+            </div>
+
+            <div class="form-group">
+                <label for="fatPer">Body Fat Percentage</label>
+                <input type="text" id="fatPer" name="fatPer" placeholder="Estimated %">
+            </div>
+
+            <div class="form-group">
+                <label for="goal">Primary Goal</label>
+                <select id="goal" name="goal" required>
+                    <option value="">Select</option>
+                    <option value="weight_loss">Weight Loss</option>
+                    <option value="muscle_gain">Muscle Gain</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="improved_nutrition">Improved Nutrition</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="meals">Meals per Day</label>
+                <input type="number" id="meals" name="meals" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="favorites">Favorite Foods</label>
+                <input type="text" id="favorites" name="favorites" placeholder="Comma separated list">
+            </div>
+
+            <div class="form-group">
+                <label for="avoid">Foods to Avoid</label>
+                <input type="text" id="avoid" name="avoid" placeholder="Comma separated list">
+            </div>
+
+            <div class="form-group">
+                <label for="meal_time">Meal Timing</label>
+                <input type="text" id="meal_time" name="meal_time" placeholder="Preferred meal times">
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Generate Smart Plan →</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
